@@ -32,8 +32,7 @@ class CVAnalyser:
             cv_text = self.extract_text_from_pdf(cv_file)
             analysis = self.analyse_cv(cv_text)
             analyses.append(analysis)
-
-        prompt = f"Given the following cv analyses:\n\n{'-' * 40}\n{'-' * 40}\n".join(analyses) + "\n\nProvide a list of the top three candidates, including their names, relevant keywords, and experiences that make them stand out. Format the output as a numbered list."
+        prompt = f"Given the following cv analyses:\n\n{'-'*40}\n{'-'*40}\n".join(analyses) + "\n\nProvide a list of the top three candidates, including their names, relevant keywords, and experiences that make them stand out. Format the output as a numbered list."
         chat_completion = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}]
@@ -42,21 +41,23 @@ class CVAnalyser:
         return top_candidates
 
 def use_gradio_interface():
-    # Initialize the CVAnalyser with relevant keywords
-    cv_analyser = CVAnalyser(keywords=['python', 'javascript', 'typescript', 'golang'])
-
-    def analyse_cvs_wrapper(cv_files):
+    def analyse_cvs_wrapper(cv_files, keywords):
         # If cv_files is not a list, convert it to a list
         if not isinstance(cv_files, list):
             cv_files = [cv_files]
         
+        # Initialize the CVAnalyser with the provided keywords
+        cv_analyser = CVAnalyser(keywords=keywords.split(','))
         top_candidates = cv_analyser.analyse_cvs(cv_files)
         return top_candidates
 
     # Gradio UI Implementation
     iface = gr.Interface(
         fn=analyse_cvs_wrapper,
-        inputs=gr.File(label="Upload cvs (maximum 10)", file_count="multiple"),
+        inputs=[
+            gr.File(label="Upload cvs (maximum 10)", file_count="multiple"),
+            gr.Textbox(label="Enter keywords (comma-separated)")
+        ],
         outputs=gr.Textbox(label="Analysis Result")
     )
 

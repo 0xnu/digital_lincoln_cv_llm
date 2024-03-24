@@ -35,6 +35,12 @@ The script analyses CVs/resumes for the presence of specified keywords and extra
 6. Click the `Submit` button to analyse the CVs/resumes.
 7. View the analysis results, including the top three candidates' names, relevant keywords, and standout experiences.
 
+### Processing Time
+
+| Number of CVs/Resumes | Processing Time |
+|------------------------|-----------------|
+| 10                     | 49.9 seconds    |
+
 ### Customisation
 
 - Modify the `keywords` list in the `use_gradio_interface()` function to specify the desired keywords for cv/resume analysis.
