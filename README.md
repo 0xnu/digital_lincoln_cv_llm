@@ -32,7 +32,7 @@ The script analyses CVs/resumes for the presence of specified keywords and extra
 3. Run the script using `python3 cv_analyser.py`.
 4. Access the Gradio interface in your web browser: `http://localhost:7860`
 5. Upload the CVs/resumes (maximum 10) in PDF format.
-6. Click the "Submit" button to analyse the CVs/resumes.
+6. Click the `Submit` button to analyse the CVs/resumes.
 7. View the analysis results, including the top three candidates' names, relevant keywords, and standout experiences.
 
 ### Customisation
