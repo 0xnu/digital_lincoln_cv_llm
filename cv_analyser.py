@@ -55,8 +55,8 @@ def use_gradio_interface():
     iface = gr.Interface(
         fn=analyse_cvs_wrapper,
         inputs=[
-            gr.File(label="Upload cvs (maximum 10)", file_count="multiple"),
-            gr.Textbox(label="Enter keywords (comma-separated)")
+            gr.File(label="Upload CVs (Maximum 10)", file_count="multiple"),
+            gr.Textbox(label="Enter Keywords (comma-separated)")
         ],
         outputs=gr.Textbox(label="Analysis Result")
     )
